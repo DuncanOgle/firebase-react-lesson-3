@@ -70,9 +70,49 @@ const remove = (keyToUpdate = '') => {
     databaseRef.remove();
 }
 
+const getCurrentUser = () => {
+    return firebase.auth().currentUser;
+}
+
+const isLoggedIn = () => {
+    if (firebase.auth().currentUser) {
+        return true;
+    }
+
+    return false;
+}
+
+const signIn = async (email, password) => {
+    try {
+        const result = await firebase.auth().signInWithEmailAndPassword(email, password)
+        console.log(result);
+    } catch(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // ...
+        console.log("An error occurred", errorCode, errorMessage);
+    }
+}
+
+const onLoginChange = (callbackFunction = () => {}) => {
+    firebase.auth().onAuthStateChanged((user) => {
+        callbackFunction(user);
+    });
+}
+
+const signOut = async () => {
+    await firebase.auth().signOut();
+}
+
 export default {
     writeTo,
     listenTo,
     update,
-    remove
+    remove,
+    getCurrentUser,
+    isLoggedIn,
+    signIn,
+    onLoginChange,
+    signOut
 }
