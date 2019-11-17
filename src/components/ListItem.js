@@ -20,7 +20,7 @@ const ListItem = (props) => {
   // We can use this to remove this item from our Firebase Database
   const removeItem = () => {
     const itemToRemove = `messages/${firebaseKey}`;
-    // How can we remove this data?
+    firebase.remove(itemToRemove);
   }
 
 
@@ -34,7 +34,7 @@ const ListItem = (props) => {
         <br />
         <small className="text-muted">{listItem.time}</small>
       </div>
-      <span className="badge badge-danger badge-pill">x</span>
+      <span onClick={removeItem} className="badge badge-danger badge-pill">x</span>
     </div>
   );
 }
