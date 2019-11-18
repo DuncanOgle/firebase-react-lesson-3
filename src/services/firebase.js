@@ -71,10 +71,18 @@ const remove = (keyToUpdate = '') => {
     databaseRef.remove();
 }
 
+/**
+ * Gets the current user from Firebase
+ * @returns {Object|undefined}
+ */
 const getCurrentUser = () => {
     return firebase.auth().currentUser;
 }
 
+/**
+ * Tests if the user is logged in or not
+ * @returns {boolean}
+ */
 const isLoggedIn = () => {
     if (firebase.auth().currentUser) {
         return true;
@@ -83,20 +91,41 @@ const isLoggedIn = () => {
     return false;
 }
 
+/**
+ * Try to login to Firebase using an email and password
+ * @param {string} email
+ * @param {string} password
+ * @returns {Promise}
+ */
 const signIn = (email, password) => {
     return firebase.auth().signInWithEmailAndPassword(email, password)
 }
 
+/**
+ * Creates a listener for when the login state changes
+ * @param {Function} callbackFunction
+ */
 const onLoginChange = (callbackFunction = () => {}) => {
-    firebase.auth().onAuthStateChanged((user) => {
+    const authRef = firebase.auth().onAuthStateChanged((user) => {
         callbackFunction(user);
     });
+
+    return authRef;
 }
 
+/**
+ * Signs the current user out
+ * @returns {Promise}
+ */
 const signOut = () => {
     return firebase.auth().signOut();
 }
 
+/**
+ * Creates a user with an email and password in Firebase
+ * @param {string} email
+ * @param {string} password
+ */
 const createUser = (email, password) => {
     return firebase.auth().createUserWithEmailAndPassword(email, password)
 }
