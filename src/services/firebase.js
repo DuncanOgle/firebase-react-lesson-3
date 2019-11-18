@@ -122,7 +122,8 @@ const signOut = () => {
 }
 
 /**
- * Creates a user with an email and password in Firebase
+ * Creates a user with an email and password in Firebase.
+ * Will automatically log them in when this is successful
  * @param {string} email
  * @param {string} password
  */
