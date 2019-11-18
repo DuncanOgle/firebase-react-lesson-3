@@ -2,9 +2,14 @@
 
 Tasks to complete;
 
-* Sign up for a Firebase account and add your config to the `src/services/firebase.js` file
-* The `InputField` component probably shouldn't be loaded before the `TodoList` is loaded. Move it to be loaded as part of the `TodoList` component
-* Hook up `ListItem` with the ability to remove an item
+* Sign up for Firebase Authentication and create a user
+* Update the rules in Firebase to lock down "messages" to a particular user
+* Create a `LoggedIn` page component (which should be the same as our current `App.js`)
+* Create a `LoggedOut` page component (which should render our `LoginForm` component)
+* Update our current `App.js` to be aware of the users login state
+* Update all references to `messages` with `messages/{yourUserID}`
+* Bonus: Add a Logout button to the `LoggedIn` page component
+* Bonus: Create a `RegistrationForm` on the `LoggedOut` page component, basing your work off the `LoginForm` component
 
 ---
 
