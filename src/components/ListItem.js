@@ -13,13 +13,13 @@ const ListItem = (props) => {
   // We can use this to toggle that the item is to be checked off
   const toggleIsChecked = () => {
     listItem.isChecked = !listItem.isChecked;
-    firebase.update(`messages/${firebaseKey}`, listItem);
+    firebase.update(`messages/${firebase.getCurrentUser().uid}/${firebaseKey}`, listItem);
   }
 
 
   // We can use this to remove this item from our Firebase Database
   const removeItem = () => {
-    const itemToRemove = `messages/${firebaseKey}`;
+    const itemToRemove = `messages/${firebase.getCurrentUser().uid}/${firebaseKey}`;
     firebase.remove(itemToRemove);
   }
 

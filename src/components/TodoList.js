@@ -17,7 +17,7 @@ class TodoList extends React.Component {
   }
 
   componentDidMount() {
-    this.messagesRef = firebase.listenTo('messages', (firebaseData) => {
+    this.messagesRef = firebase.listenTo(`messages/${firebase.getCurrentUser().uid}`, (firebaseData) => {
       // We call .val() to get an actual data object, rather than a Firebase object
       this.setState({
         isLoading: false,

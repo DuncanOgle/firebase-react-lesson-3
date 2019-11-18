@@ -36,7 +36,7 @@ class InputField extends React.Component {
     };
 
     // Write our data
-    firebase.writeTo('messages', todoListItem);
+    firebase.writeTo(`messages/${firebase.getCurrentUser().uid}`, todoListItem);
 
     // Reset our input field to not have a value
     this.setState({value: ''})
