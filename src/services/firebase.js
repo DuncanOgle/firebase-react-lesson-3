@@ -2,6 +2,7 @@
 import firebase from 'firebase/app';
 // Import database functions, because we plan on using them
 import 'firebase/database';
+import 'firebase/auth';
 
 // Set the configuration for your app
 const firebaseConfig = {
@@ -82,17 +83,8 @@ const isLoggedIn = () => {
     return false;
 }
 
-const signIn = async (email, password) => {
-    try {
-        const result = await firebase.auth().signInWithEmailAndPassword(email, password)
-        console.log(result);
-    } catch(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // ...
-        console.log("An error occurred", errorCode, errorMessage);
-    }
+const signIn = (email, password) => {
+    return firebase.auth().signInWithEmailAndPassword(email, password)
 }
 
 const onLoginChange = (callbackFunction = () => {}) => {
@@ -101,8 +93,12 @@ const onLoginChange = (callbackFunction = () => {}) => {
     });
 }
 
-const signOut = async () => {
-    await firebase.auth().signOut();
+const signOut = () => {
+    return firebase.auth().signOut();
+}
+
+const createUser = (email, password) => {
+    return firebase.auth().createUserWithEmailAndPassword(email, password)
 }
 
 export default {
@@ -114,5 +110,6 @@ export default {
     isLoggedIn,
     signIn,
     onLoginChange,
-    signOut
+    signOut,
+    createUser
 }
