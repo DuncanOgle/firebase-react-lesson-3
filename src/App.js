@@ -31,6 +31,26 @@ class App extends React.Component {
         {!this.state.isLoggedIn && <LoggedOutPage />}
       </div>
     );
+    /**
+     * The use of "&&" above is a short hand way of doing "inline" conditionals.
+     * This code would be the equivalent of doing something like this;
+     *
+     * if (this.state.isLoggedIn) {
+     *   return (
+     *     <div className="container">
+     *       <h1>Firebase Todo List</h1>
+     *       <LoggedInPage />
+     *     </div>
+     *   );
+     * }
+     *
+     * return (
+     *   <div className="container">
+     *     <h1>Firebase Todo List</h1>
+     *     <LoggedOutPage />
+     *   </div>
+     * );
+     */
   }
 }
 

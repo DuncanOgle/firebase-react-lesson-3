@@ -17,6 +17,12 @@ class TodoList extends React.Component {
   }
 
   componentDidMount() {
+    /**
+     * Before, we only listened to "messages", but now that no-one has
+     * permission to read the "messages" object, we must ask for every message
+     * under our UserID (which is provided for us by Firebase). That's why we
+     * now make the request to `messages/${firebase.getCurrentUser().uid}`
+     */
     this.messagesRef = firebase.listenTo(`messages/${firebase.getCurrentUser().uid}`, (firebaseData) => {
       // We call .val() to get an actual data object, rather than a Firebase object
       this.setState({

@@ -126,6 +126,7 @@ const signOut = () => {
  * Will automatically log them in when this is successful
  * @param {string} email
  * @param {string} password
+ * @returns {Promise}
  */
 const createUser = (email, password) => {
     return firebase.auth().createUserWithEmailAndPassword(email, password)

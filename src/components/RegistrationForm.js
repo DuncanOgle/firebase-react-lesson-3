@@ -2,6 +2,11 @@ import React from 'react';
 
 import firebase from '../services/firebase';
 
+/**
+ * The registration form is basically the exact same as the <LoginForm />
+ * component. The only difference is that when we submit the form, we call
+ * "firebase.createUser" instead of "firebase.signIn"
+ */
 class RegistrationForm extends React.Component {
   constructor(props) {
     super(props);
@@ -20,6 +25,10 @@ class RegistrationForm extends React.Component {
       return;
     }
 
+    /**
+     * This is (basically) the only difference between the LoginForm and
+     * RegistrationForm
+     */
     firebase.createUser(this.state.email, this.state.password).catch((error) => {
       this.setState({
         errorMessage: error.message
